@@ -1,0 +1,785 @@
+/* ========================================= 🌐 DASAR UMUM ========================================= */
+*, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  transition: all 0.4s ease;
+}
+
+/* ========================================= ☀️ MODE TERANG ========================================= */
+body.light-mode {
+  background-color: #e0ffff;
+  color: #000;
+}
+
+body.light-mode .container-navbar,
+body.light-mode .container-footer {
+  background-color: blue;
+  color: white;
+}
+
+/* ========================================= 🌙 MODE GELAP ========================================= */
+body.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+
+body.dark-mode .container-navbar,
+body.dark-mode .container-footer {
+  background-color: #111;
+}
+
+/* ========================================= 🧭 NAVBAR ========================================= */
+.container-navbar {
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  z-index: 99;
+}
+
+.ul-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 20px;
+}
+
+.li-navbar {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.li-navbar:hover {
+  background-color: blue;
+  color: white;
+}
+
+/* ========================================= 📑 FOOTER ========================================= */
+.container-footer {
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  background-color: blue;
+  color: white;
+}
+
+/* ========================================= 📦 KONTEN UTAMA ========================================= */
+.container-content {
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: scroll;
+  padding: 20px;
+}
+
+/* ========================================= 🖼️ GALERI ========================================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  justify-items: center;
+}
+
+.gallery .card {
+  width: 160px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery .card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.gallery .card p {
+  width: 100%;
+  padding: 10px;
+  background-color: #f8f8f8;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+}
+
+.gallery .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.gallery .card:hover p {
+  background-color: blue;
+  color: white;
+}
+
+body.dark-mode .gallery .card p {
+  background-color: #777;
+  color: white;
+}
+
+/* ========================================= 🖋️ HALAMAN DETAIL ========================================= */
+.halaman-detail.light-mode {
+  background-color: #a6deff;
+  color: #000;
+}
+
+.halaman-detail.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+
+/* HEADER */
+.detail-header {
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #00bfff;
+  color: white;
+  position: sticky;
+  top: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.detail-header .back-button {
+  position: absolute;
+  left: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+
+/* Dark mode header/footer hitam */
+.halaman-detail.dark-mode .detail-header,
+.halaman-detail.dark-mode .detail-footer {
+  background-color: #111;
+  color: white;
+}
+
+/* FOTO */
+.detail-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  position: relative;
+}
+
+.detail-content img {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.detail-content img:hover {
+  transform: scale(1.03);
+}
+
+/* PANAH */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+}
+
+.nav-arrow.left { left: 10px; }
+.nav-arrow.right { right: 10px; }
+
+body.light-mode .nav-arrow { color: black; }
+body.dark-mode .nav-arrow { color: white; }
+
+/* FOOTER */
+.detail-footer {
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #00bfff;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+/* ====================== 🎵 TOMBOL PUTAR ACAK ====================== */
+.putar-acak {
+  position: fixed;
+  right: 20px;
+  bottom: 70px; /* di atas navbar */
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+.putar-acak:hover {
+  transform: scale(1.1);
+  background-color: #0044cc;
+}
+
+/* Dark mode */
+body.dark-mode .putar-acak {
+  background-color: #111;
+  color: white;
+  border: 2px solid white;
+}
+
+body.dark-mode .putar-acak:hover {
+  background-color: #222;
+}
+/* ====================== 🎨 DETAIL FOTO DI TENGAH ====================== */
+.detail-wrapper {
+  height: calc(100vh - 12vh); /* biar pas di tengah antara header dan footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+}
+
+.foto-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foto-container img {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.foto-container img:hover {
+  transform: scale(1.03);
+}
+
+/* Tombol panah tetap sejajar di tengah */
+.nav-arrow {
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.nav-arrow:hover {
+  transform: scale(1.2);
+}
+
+body.light-mode .nav-arrow {
+  color: black;
+}
+
+body.dark-mode .nav-arrow {
+  color: white;
+}
+/* ====================== 🏠 HOME PAGE ====================== */
+.home-container {
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #b3d9ff, #e0ffff);
+  text-align: center;
+  padding: 20px;
+}
+
+.dark-mode .home-container {
+  background: linear-gradient(180deg, #0a0a0a, #1a1a1a);
+}
+
+.intro-box {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .intro-box {
+  background-color: rgba(30, 30, 30, 0.9);
+  color: white;
+}
+
+.intro-box:hover {
+  transform: scale(1.02);
+}
+
+.judul-home {
+  font-size: 28px;
+  color: blue;
+  margin-bottom: 10px;
+}
+
+.dark-mode .judul-home {
+  color: #88c0ff;
+}
+
+.deskripsi-home {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.tombol-home button {
+  margin: 5px;
+  padding: 10px 18px;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+  transition: all 0.3s;
+}
+
+.tombol-home button:hover {
+  transform: scale(1.1);
+  background-color: #0033cc;
+}
+
+.dark-mode .tombol-home button {
+  background-color: #111;
+  color: white;
+  border: 2px solid white;
+}
+
+.dark-mode .tombol-home button:hover {
+  background-color: #222;
+}
+/* ====================== 🌈 ANIMASI LATAR GERAK ====================== */
+.home-page {
+  overflow: hidden;
+  position: relative;
+}
+
+.background-anim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(270deg, #00bfff, #66ccff, #99e6ff, #00bfff);
+  background-size: 600% 600%;
+  z-index: -1;
+  animation: gerakLatar 15s ease infinite;
+  filter: brightness(1.1);
+}
+
+@keyframes gerakLatar {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ====================== 🏠 HOME CONTENT ====================== */
+.home-wrapper {
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #000;
+}
+
+.intro-home {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 40px 30px;
+  border-radius: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  max-width: 400px;
+  backdrop-filter: blur(10px);
+}
+
+.judul-home {
+  font-size: 32px;
+  font-weight: bold;
+  color: blue;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.deskripsi-home {
+  font-size: 16px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.tombol-home button {
+  margin: 5px;
+  padding: 10px 18px;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+  transition: all 0.3s;
+}
+
+.tombol-home button:hover {
+  transform: scale(1.1);
+  background-color: #0033cc;
+}
+/* ====================== 🌌 ANIMASI BINTANG ====================== */
+.stars, .stars2, .stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  z-index: -1;
+  animation: gerakBintang 200s linear infinite;
+}
+
+.stars {
+  background-image: radial-gradient(2px 2px at 20px 20px, white, transparent);
+  background-size: 200px 200px;
+  opacity: 0.8;
+}
+
+.stars2 {
+  background-image: radial-gradient(1.5px 1.5px at 40px 40px, white, transparent);
+  background-size: 300px 300px;
+  opacity: 0.5;
+  animation-duration: 300s;
+}
+
+.stars3 {
+  background-image: radial-gradient(1px 1px at 60px 60px, white, transparent);
+  background-size: 500px 500px;
+  opacity: 0.3;
+  animation-duration: 400s;
+}
+
+@keyframes gerakBintang {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-1000px); }
+}
+
+/* ====================== 🔷 HEADER BOX (KEGABUTAN Kidzz) ====================== */
+.header-box {
+  background-color: cyan;
+  color: white;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.dark-mode .header-box {
+  background-color: #111;
+  color: white;
+}
+
+/* ====================== 🏠 HOME ====================== */
+.home-wrapper {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.intro-home {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .intro-home {
+  background-color: rgba(30, 30, 30, 0.9);
+  color: white;
+}
+
+.intro-home h2 {
+  font-size: 26px;
+  color: blue;
+  margin-bottom: 10px;
+}
+
+.dark-mode .intro-home h2 {
+  color: #88c0ff;
+}
+
+.intro-home p {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.tombol-home button {
+  margin: 5px;
+  padding: 10px 18px;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+  transition: all 0.3s;
+}
+
+.tombol-home button:hover {
+  transform: scale(1.1);
+  background-color: #0033cc;
+}
+
+.dark-mode .tombol-home button {
+  background-color: #111;
+  color: white;
+  border: 2px solid white;
+}
+
+.dark-mode .tombol-home button:hover {
+  background-color: #222;
+}
+
+/* ====================== 🔘 NAVBAR BAWAH ====================== */
+.container-navbar {
+  height: 6vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: blue;
+  z-index: 99;
+}
+
+body.dark-mode .container-navbar {
+  background-color: #111;
+}
+
+.ul-navbar {
+  display: flex;
+  list-style: none;
+  padding-right: 20px;
+}
+
+.li-navbar {
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.li-navbar:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+/* ====================== 🔘 NAVBAR SEIMBANG ====================== */
+.container-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6vh;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 25px; /* jarak horizontal kecil */
+  box-sizing: border-box;
+  z-index: 99;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+}
+
+.dark-mode .container-navbar {
+  background-color: #111;
+}
+
+.ul-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* kiri–kanan seimbang */
+  list-style: none;
+  width: 100%;
+  max-width: 500px; /* agar tidak terlalu lebar */
+  margin: 0;
+  padding: 0;
+}
+
+.li-navbar {
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+  user-select: none;
+}
+
+.li-navbar:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+/* Tombol Mode di kanan */
+.li-navbar.mode {
+  margin-left: auto;
+  background-color: rgba(255,255,255,0.1);
+}
+/* ====================== 🎨 WARNA LIGHT MODE KUSTOM ====================== */
+body.light-mode {
+  background-color: #a6deff; /* warna tengah lembut */
+  color: #000;
+}
+
+body.light-mode .container-navbar,
+body.light-mode .container-footer,
+body.light-mode .header-box {
+  background-color: #58c1ff; /* warna biru muda untuk bar atas & bawah */
+  color: white;
+}
+
+body.light-mode .intro-home h2 {
+  color: #007acc; /* teks heading lebih segar */
+}
+
+body.light-mode .tombol-home button {
+  background-color: #58c1ff;
+  color: white;
+}
+
+body.light-mode .tombol-home button:hover {
+  background-color: #007acc;
+}
+
+/* Warna kartu galeri di light mode */
+body.light-mode .gallery .card p {
+  background-color: #a6deff;
+}
+
+body.light-mode .gallery .card:hover p {
+  background-color: #29b0ff;
+  color: white;
+}
+
+/* Mode gelap tetap seperti biasa */
+body.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+/* ====================== 🎵 DAFTAR LAGU (STYLE OVAL 2 KOLOM) ====================== */
+#daftarLagu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* dua lagu per baris */
+  gap: 15px;
+  justify-items: center;
+  padding: 20px;
+}
+
+#daftarLagu .card {
+  width: 160px;
+  height: 80px;
+  background-color: ;
+  border-radius: 25px; /* bikin oval */
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* teks di tengah */
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  border: none;
+}
+
+#daftarLagu .card:hover {
+  transform: scale(1.05);
+  background-color: #58c1ff; /* efek hover biru muda */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#daftarLagu .judul-lagu {
+  font-weight: 800; /* tebal seperti contoh */
+  font-size: 15px;
+  margin: 5;
+  color: #000;
+  line-height: 1.1;
+  border: none;
+}
+
+#daftarLagu .penyanyi {
+  font-size: 10px;
+  margin: 0;
+  margin-top: 5px; /* rapat ke judul */
+  color: ;
+  line-height: 1;
+  border: none;
+}
+
+/* 🌙 Dark Mode */
+body.dark-mode #daftarLagu .card {
+  background-color: #2c2c2c;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode #daftarLagu .judul-lagu,
+body.dark-mode #daftarLagu .penyanyi {
+  color: #fff;
+}
+
+body.dark-mode #daftarLagu .card:hover {
+  background-color: #444;
+}

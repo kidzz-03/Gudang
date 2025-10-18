@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="halaman-detail light-mode">
+  <div class="detail-header">
+    <div class="back-button" onclick="keluar()">&#8250;</div>
+    <div class="title" id="judulArtis"></div>
+  </div>
+
+  <!-- Konten foto + panah di tengah -->
+  <div class="detail-wrapper">
+    <div class="nav-arrow left" onclick="gantiFoto(-1)">&lt;</div>
+    <div class="foto-container">
+      <img id="fotoUtama" src="" alt="Foto Artis">
+    </div>
+    <div class="nav-arrow right" onclick="gantiFoto(1)">&gt;</div>
+  </div>
+
+  <div class="detail-footer">
+    <p>© 2025 KEGABUTAN Kidzz</p>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaArtis = urlParams.get("nama");
+    const artis = dataArtis[namaArtis];
+    let index = 0;
+
+    if (artis) {
+      document.title = artis.nama;
+      document.getElementById("judulArtis").innerText = artis.nama;
+      document.getElementById("fotoUtama").src = artis.foto[0];
+    } else {
+      document.getElementById("judulArtis").innerText = "Tidak ditemukan";
+    }
+
+    function gantiFoto(arah) {
+      if (!artis) return;
+      index += arah;
+      if (index < 0) index = artis.foto.length - 1;
+      if (index >= artis.foto.length) index = 0;
+      document.getElementById("fotoUtama").src = artis.foto[index];
+    }
+
+    function keluar() {
+      window.location.href = "galeri.html";
+    }
+
+    if (localStorage.getItem("mode") === "dark") {
+      document.body.classList.add("dark-mode");
+      document.body.classList.remove("light-mode");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key.toLowerCase() === "m") {
+        document.body.classList.toggle("dark-mode");
+        document.body.classList.toggle("light-mode");
+        localStorage.setItem(
+          "mode",
+          document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+      }
+    });
+  </script>
+</body>
+</html>

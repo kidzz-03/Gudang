@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KEGABUTAN Kidzz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="home-page light-mode">
+  <!-- ANIMASI BINTANG -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- HEADER BIRU -->
+  <header class="header-box">
+    <h2>Kidzz 🎧</h2>
+  </header>
+
+  <!-- KONTEN UTAMA -->
+  <main class="home-wrapper">
+    <div class="intro-home">
+      <h2>Selamat Datang!</h2>
+      <p>
+        Hai! 👋 Aku Puswara dari <b>gudang Kidzz</b>.<br />
+        Tempat santai buat kamu yang mau dengerin lagu<br />
+        dan lihat foto² dari kidzz 😎🎶
+      </p>
+
+      <div class="tombol-home">
+        <button onclick="window.location.href='lagu.html'">🎵 Daftar Lagu</button>
+        <button onclick="window.location.href='galeri.html'">🖼️ Galeri </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- NAVBAR BAWAH -->
+  <div class="container-navbar">
+    <ul class="ul-navbar">
+      <li class="li-navbar mode" id="modeToggle">Mode</li>
+    </ul>
+  </div>
+
+  <!-- MUSIK OTOMATIS -->
+<audio id="laguHome" autoplay muted loop>
+  <source src="multo1.mp3" type="audio/mp3">
+</audio>
+
+<script>
+  // Aktifkan suara setelah pengguna menyentuh layar
+  document.body.addEventListener('click', function() {
+    const audio = document.getElementById('laguHome');
+    audio.muted = false;
+    audio.play();
+  });
+</script>
+
+  <script>
+    // MODE TOGGLE
+    const body = document.body;
+    const toggle = document.getElementById("modeToggle");
+
+    if (localStorage.getItem("mode") === "dark") {
+      body.classList.add("dark-mode");
+      body.classList.remove("light-mode");
+    } else {
+      body.classList.add("light-mode");
+      body.classList.remove("dark-mode");
+    }
+
+    toggle.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      body.classList.toggle("light-mode");
+      localStorage.setItem(
+        "mode",
+        body.classList.contains("dark-mode") ? "dark" : "light"
+      );
+    });
+
+    // LAGU
+    const lagu = document.getElementById("laguHome");
+    lagu.volume = 0.4;
+  </script>
+</body>
+</html>
